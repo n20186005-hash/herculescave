@@ -42,4 +42,4 @@ pnpm deploy
 
 ## Important packaging note
 
-Read `BUILD-NOTICE.md` before production. The packaging sandbox could not access npm or directly download Wikimedia binaries, so final network-enabled lockfile generation/build validation and replacement with the selected real photos remain required.
+Read `BUILD-NOTICE.md` before production. The lockfile was regenerated against the real npm registry on 2026-09-11 and `pnpm install --frozen-lockfile` now passes. The remaining caveat is the imagery: the packaging sandbox could not download Wikimedia binaries, so the site currently ships local fallback visuals that still need to be replaced with the selected real photos.
