@@ -10,7 +10,16 @@ export default defineConfig({
   site,
   output: 'server',
   adapter: cloudflare(),
-  integrations: site ? [sitemap()] : [],
+  integrations: site
+    ? [
+        sitemap({
+          i18n: {
+            defaultLocale: 'ar',
+            locales: { ar: 'ar', en: 'en', fr: 'fr', es: 'es' }
+          }
+        })
+      ]
+    : [],
   vite: {
     plugins: [tailwindcss()]
   }

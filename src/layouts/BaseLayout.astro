@@ -1,0 +1,107 @@
+---
+import '../styles/global.css';
+import type { Locale } from '../i18n';
+import { locales, htmlLang, ogLocale, dir as dirMap, langLabel, basePath, buildAlternates } from '../i18n';
+import { content } from '../content/text';
+import { buildAttractionSchema, buildFaqSchema } from '../lib/schema';
+import { siteNames } from '../data/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const c = content[locale];
+
+const siteUrl = (Astro.site?.toString().replace(/\/$/, '')) || 'https://herculescave.com';
+const path = basePath(locale);
+const canonical = `${siteUrl}${path}`;
+const heroImage = `${siteUrl}/images/hercules-ocean-window.jpg`;
+
+const alternates = buildAlternates(siteUrl, locale);
+
+const attractionLd = buildAttractionSchema({ locale, canonical, heroImage, description: c.metaDescription });
+const faqLd = buildFaqSchema(c.faqs);
+---
+
+<!doctype html>
+<html lang={htmlLang[locale]} dir={dirMap[locale]}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{c.htmlTitle}</title>
+    <meta name="description" content={c.metaDescription} />
+    <meta name="theme-color" content="#071617" />
+    <link rel="canonical" href={canonical} />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={c.htmlTitle} />
+    <meta property="og:description" content={c.metaDescription} />
+    <meta property="og:image" content={heroImage} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={ogLocale[locale]} />
+    <meta property="og:site_name" content={siteNames[locale]} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={c.htmlTitle} />
+    <meta name="twitter:description" content={c.metaDescription} />
+    <meta name="twitter:image" content={heroImage} />
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    <link rel="preload" as="image" href={heroImage} fetchpriority="high" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HXM22WWPKP');
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(attractionLd)}></script>
+    <script type="application/ld+json" set:html={JSON.stringify(faqLd)}></script>
+  </head>
+  <body>
+    <header class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#071617]/80 backdrop-blur-xl">
+      <div class="section-shell flex h-20 items-center justify-between gap-5">
+        <a href={`${canonical}#top`} class="flex items-center gap-3" aria-label={c.footerBrand}>
+          <img src="/logo.svg" alt={c.footerBrand} class="h-11 w-auto" />
+        </a>
+        <nav class="hidden gap-6 text-sm text-white/75 md:flex">
+          {c.nav.map((n) => <a class="hover:text-white" href={`${path}#${n.id}`}>{n.label}</a>)}
+        </nav>
+        <div class="flex items-center gap-3">
+          <a
+            href="https://maps.app.goo.gl/vPP3S3mZ3VG9v59P9"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-full border border-[#8fd5d1]/40 bg-[#8fd5d1]/10 px-4 py-2 text-sm font-bold text-[#b8eeea]"
+          >{c.openMapsLabel}</a>
+          <div class="flex items-center gap-1 text-xs">
+            {locales.map((l) => (
+              <a
+                href={`${siteUrl}${basePath(l)}`}
+                hreflang={l}
+                lang={l}
+                class={`rounded-full px-2 py-1 ${l === locale ? 'bg-white/15 text-white' : 'text-white/55 hover:text-white'}`}
+              >{langLabel[l]}</a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <slot />
+    </main>
+
+    <footer class="border-t border-white/10 py-10">
+      <div class="section-shell flex flex-col gap-5 text-sm text-white/50 md:flex-row md:items-center md:justify-between">
+        <div class="flex items-center gap-3"><img src="/icons/favicon.svg" alt="" class="h-8 w-8" /><span>{c.footerBrand}</span></div>
+        <div class="flex flex-wrap gap-4">
+          {c.footerLegal.map((f) => <a href={f.href} class="hover:text-white">{f.label}</a>)}
+        </div>
+        <p>{c.footerDisclaimer}</p>
+      </div>
+    </footer>
+  </body>
+</html>
