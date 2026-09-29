@@ -1,0 +1,14 @@
+ WARN  Unsupported engine: wanted: {"node":"24.15.0"} (current: {"node":"v24.19.0","pnpm":"10.34.5"})
+Lockfile is up to date, resolution step is skipped
+Packages: +312
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 0, reused 1, downloaded 0, added 0
+Progress: resolved 0, reused 297, downloaded 0, added 0
+Progress: resolved 0, reused 299, downloaded 0, added 0
+Progress: resolved 0, reused 301, downloaded 0, added 0
+Progress: resolved 0, reused 302, downloaded 0, added 0
+Progress: resolved 0, reused 302, downloaded 0, added 1
+Progress: resolved 0, reused 302, downloaded 0, added 2
+Progress: resolved 0, reused 302, downloaded 0, added 3
+Progress: resolved 0, reused 303, downloaded 0, added 3
+Progress: resolved 0, reused 303, downloaded 0, added 4
