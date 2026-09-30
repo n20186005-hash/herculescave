@@ -1,6 +1,6 @@
 # Hercules Caves / مغارة هرقل
 
-موقع عربي RTL أحادي الصفحة لمغارة هرقل في طنجة، مبني بـ Astro + Tailwind CSS + TypeScript ومهيأ لـ Cloudflare Workers.
+موقع سياحي غير رسمي لمغارة هرقل في طنجة، متعدد اللغات (العربية افتراضياً في الجذر، مع الإنجليزية والفرنسية والإسبانية في `/en/`,`/fr/`,`/es/`)، مبني بـ Astro + Tailwind CSS + TypeScript ومهيأ لـ Cloudflare Workers. يُخرج كل صفحة `canonical` و`hreflang` (ar/en/fr/es/x-default) وبيانات منظمة TouristAttraction + FAQPage.
 
 ## الإعداد
 
