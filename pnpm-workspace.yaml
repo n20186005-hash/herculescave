@@ -1,0 +1,3 @@
+onlyBuiltDependencies:
+  - 'esbuild@0.28.1 || 0.28.2'
+  - 'workerd@1.20260910.1'

@@ -37,8 +37,8 @@ export function basePath(locale: Locale): string {
 }
 
 // Build hreflang alternate links for a given locale.
-export function buildAlternates(siteUrl: string, locale: Locale) {
-  const out = locales.map((l) => ({ hreflang: l, href: `${siteUrl}${basePath(l)}` }));
+export function buildAlternates(siteUrl: string) {
+  const out: { hreflang: string; href: string }[] = locales.map((l) => ({ hreflang: l, href: `${siteUrl}${basePath(l)}` }));
   out.push({ hreflang: 'x-default', href: `${siteUrl}/` });
   return out;
 }

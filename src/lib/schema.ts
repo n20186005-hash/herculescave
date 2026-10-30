@@ -1,12 +1,8 @@
 import type { Locale } from '../i18n';
 import {
   names,
-  telephone,
   plusCode,
   geo,
-  openingHours,
-  priceRange,
-  rating,
   mapsUrl
 } from '../data/site';
 
@@ -16,16 +12,15 @@ export function buildAttractionSchema(opts: {
   heroImage: string;
   description: string;
 }) {
-  const { locale, canonical, heroImage, description } = opts;
+  const { locale, canonical, description } = opts;
   return {
     '@context': 'https://schema.org',
-    '@type': ['TouristAttraction', 'LocalBusiness'],
+    '@type': 'TouristAttraction',
     name: names[locale],
     alternateName: Object.values(names),
     description,
     ...(canonical ? { url: canonical } : {}),
-    image: [heroImage],
-    telephone,
+
     address: {
       '@type': 'PostalAddress',
       streetAddress: plusCode,
@@ -37,15 +32,6 @@ export function buildAttractionSchema(opts: {
       '@type': 'GeoCoordinates',
       latitude: geo.latitude,
       longitude: geo.longitude
-    },
-    openingHoursSpecification: openingHours,
-    priceRange,
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: rating.value,
-      reviewCount: rating.reviewCount,
-      bestRating: rating.best,
-      worstRating: rating.worst
     },
     sameAs: [mapsUrl]
   };

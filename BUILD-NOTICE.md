@@ -1,54 +1,7 @@
-# Build notice
+# Candidate validation
 
-## Lockfile status: RESOLVED (2026-09-11)
+Local review dated 29 October 2026. Keep Node 24.15.0, pnpm 10.34.5 and the locked dependency graph. A fresh normal frozen installation, source check, variable-free build, generated Worker configuration and default deployment dry-run must be checked. The default site now ensures the sitemap exists without PUBLIC_SITE_URL.
 
-The previously committed `pnpm-lock.yaml` was a hand-written stub: it listed the
-importer (direct) dependencies but had no `packages:` / `snapshots:` section, so
-CI failed with:
+The output remains SSR with prerendered home/information pages. Native Worker checks must cover all four locales, aliases, genuine localized error status/noindex/HEAD, static assets, sitemap, canonical and language alternatives. The source wrapper is included in the generated entry.
 
-```
-ERR_PNPM_LOCKFILE_MISSING_DEPENDENCY  Broken lockfile: no entry for '@astrojs/cloudflare@14.3.1' in pnpm-lock.yaml
-```
-
-That stub has been deleted and regenerated against the real npm registry with
-`pnpm install --lockfile-only` (pnpm 10.34.5), so it now contains the full
-transitive resolution graph (`packages:` + `snapshots:`).
-
-Verified locally:
-
-```bash
-rm -f pnpm-lock.yaml
-pnpm install --lockfile-only      # full resolution
-pnpm install --frozen-lockfile    # passes, node_modules created
-```
-
-Re-run the two commands above only if `package.json` changes.
-
-## Remaining caveat: photos
-
-The sandbox that assembled this package could not download Wikimedia image
-binaries directly into the filesystem. The project therefore ships local
-AI-generated fallback visuals so the package is not visually broken, plus exact
-Wikimedia Commons real-photo source links in `IMAGE-SOURCES.md` and
-`docs/REAL-PHOTO-REPLACEMENT.md`. Replace them with the real photos when the
-licence/attribution review is done.
-
-## Final validation checklist
-
-Run with Node 24.15.0:
-
-```bash
-corepack enable
-corepack prepare pnpm@10.34.5 --activate
-pnpm install --frozen-lockfile
-pnpm check
-pnpm build
-```
-
-Then verify:
-
-```bash
-! grep -RniE 'example\.com|localhost|chrome-extension://' dist
-```
-
-If `PUBLIC_SITE_URL` is unset, `@astrojs/sitemap` is intentionally disabled and no placeholder domain is emitted. If it is set, inspect the generated sitemap and ensure it contains only the configured real domain.
+Independent visual acceptance remains necessary for mobile/desktop, Arabic RTL, translated information pages, language controls, mobile navigation, map bounds and explicitly non-documentary illustration labels. A source/VM check is not browser evidence. Publication, exact-commit CI and production version/routing acceptance are separate gates; these notes do not claim a release.

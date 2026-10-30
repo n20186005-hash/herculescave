@@ -1,0 +1,8 @@
+---
+import type { Locale } from '../i18n';
+import { visitor } from '../content/visitor';
+import { basePath } from '../i18n';
+interface Props { locale: Locale; }
+const {locale} = Astro.props; const v = visitor[locale];
+---
+<div class="section-shell legal-copy pb-20 pt-52 md:pt-36"><h1 class="text-3xl font-black">{v.legalTitle}</h1><p>{v.privacy}</p><p>{v.hosting}</p><p><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">{v.google}</a> · <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">{v.cloudflare}</a> · <a href="https://developers.cloudflare.com/web-analytics/data-metrics/data-origin-and-collection/" target="_blank" rel="noopener noreferrer">Cloudflare Web Analytics</a></p><p>{v.terms}</p><a href={basePath(locale)}>{v.back}</a></div>

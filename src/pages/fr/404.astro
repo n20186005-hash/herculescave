@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { visitor } from '../../content/visitor';
+const v = visitor.fr;
+Astro.response.status = 404;
+---
+<BaseLayout locale="fr" pageKind="error"><div class="section-shell legal-copy pb-20 pt-52 md:pt-36"><h1 class="text-3xl font-black">{v.errorTitle}</h1><p>{v.errorBody}</p><a href="/fr/">{v.back}</a></div></BaseLayout>

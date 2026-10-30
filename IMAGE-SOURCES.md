@@ -1,22 +1,5 @@
-# Image sources / الصور
+# Visuals and representation
 
-## Bundled files
+The only scenic graphic served by this candidate is `public/images/coastal-illustration.svg`, an original geometric composition of sea, sky and stone-like shapes created for this guide. It contains no people, logos, reproduced sculpture or depiction of a particular real cave opening. It is not a photograph, site plan or evidence of current access. Every direct use and social-image alt text identifies it as an illustration in the current language.
 
-The five files under `public/images/` are local fallback visuals generated during packaging because the execution sandbox could not download remote image binaries. They are **not presented as documentary photographs** and should be replaced before production if the requirement is strictly “real photos only”.
-
-## Real-photo sources selected for production
-
-1. `hercules-ocean-window.jpg` — Diego Delso, **CC BY-SA 4.0**  
-   https://commons.wikimedia.org/wiki/File:Cuevas_de_H%C3%A9rcules,_Cabo_Espartel,_Marruecos,_2015-12-11,_DD_10-12_HDR.JPG
-
-2. `hercules-sea-opening-portrait.jpg` — Diego Delso, **CC BY-SA 4.0**  
-   https://commons.wikimedia.org/wiki/File:Cuevas_de_H%C3%A9rcules,_Cabo_Espartel,_Marruecos,_2015-12-11,_DD_07-09_HDR.JPG
-
-3. `hercules-interior-wide.jpg` — Diego Delso, **CC BY-SA 4.0**  
-   https://commons.wikimedia.org/wiki/File:Cuevas_de_H%C3%A9rcules,_Cabo_Espartel,_Marruecos,_2015-12-11,_DD_22-24_HDR.JPG
-
-4. `hercules-stone-hall.jpg` — Diego Delso, **CC BY-SA 4.0**  
-   https://commons.wikimedia.org/wiki/File:Cuevas_de_H%C3%A9rcules,_Cabo_Espartel,_Marruecos,_2015-12-11,_DD_13-15_HDR.JPG
-
-5. `hercules-coast.jpg` — Wikimedia Commons: “Outside the caves of Hercules, Morocco”  
-   https://commons.wikimedia.org/wiki/File:Outside_the_caves_of_Hercules,_Morocco.jpg
+All five prior AI raster fallbacks were removed from the public tree. They are not relicensed under any proposed Wikimedia photo license. No external photograph, Creative Commons credit or assertion that these schematic shapes show the actual cave is used. The site’s existing simple logo and favicon remain identity graphics.
